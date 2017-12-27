@@ -6,7 +6,7 @@ defmodule PolishValidators do
     @weights [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
     
     @moduledoc """
-    Documentation for PolishValidators.Nip
+    Provides function validate/1 to check NIP number.
     """
 
     @doc """
@@ -14,7 +14,14 @@ defmodule PolishValidators do
 
     ## Examples
 
-        iex> PolishValidators.Nip.validate()
+        iex> PolishValidators.Nip.validate("44051401359")
+        { :ok, "Valid" }
+
+        iex> PolishValidators.Nip.validate("44051401354")
+        { :error, "Wrong checksum" }
+
+        iex> PolishValidators.Nip.validate("44051401")
+        { :error, "Invalid length" }
     
     """
     #def validate(pesel) do#when is_binary(pesel) do
