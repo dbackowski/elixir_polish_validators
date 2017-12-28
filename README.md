@@ -1,6 +1,16 @@
 # PolishValidators
 
-**TODO: Add description**
+Library for validate polish numbers: PESEL, NIP, REGON, IBAN (PL)
+
+## Usage
+
+```elixir
+iex> PolishValidators.Pesel.validate("44051401359")
+{ :ok, "Valid" }
+
+iex> PolishValidators.Nip.validate("6597068174")
+{ :ok, "Valid" }
+```
 
 ## Installation
 
