@@ -1,26 +1,26 @@
 defmodule PolishValidators do
-  defmodule Nip do
+  defmodule Pesel do
     import String, only: [split: 3]
     import Enum, only: [zip: 1, reduce: 3, map: 2]
     
     @weights [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
     
     @moduledoc """
-    Provides function validate/1 to check NIP number.
+    Provides function validate/1 to check Pesel number.
     """
 
     @doc """
-    Validate NIP number.
+    Validate Pesel number.
 
     ## Examples
 
-        iex> PolishValidators.Nip.validate("44051401359")
+        iex> PolishValidators.Pesel.validate("44051401359")
         { :ok, "Valid" }
 
-        iex> PolishValidators.Nip.validate("44051401354")
+        iex> PolishValidators.Pesel.validate("44051401354")
         { :error, "Wrong checksum" }
 
-        iex> PolishValidators.Nip.validate("44051401")
+        iex> PolishValidators.Pesel.validate("44051401")
         { :error, "Invalid length" }
     
     """
