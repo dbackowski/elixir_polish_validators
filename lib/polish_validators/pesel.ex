@@ -1,7 +1,9 @@
 defmodule PolishValidators.Pesel do
-  import String, only: [split: 3]
+  import String, only: [split: 3, length: 1, to_integer: 1]
   import Enum, only: [zip: 1, reduce: 3, map: 2]
-  
+  import List, only: [last: 1]
+  import Kernel, except: [length: 1]
+
   @weights [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
   
   @moduledoc """
@@ -41,11 +43,11 @@ defmodule PolishValidators.Pesel do
   defp to_integers_list(pesel) do
     to_string(pesel) 
       |> split("", trim: true)
-      |> map(&(String.to_integer(&1)))
+      |> map(&(to_integer(&1)))
   end
 
   defp validate_length(pesel) do
-    case String.length(pesel) do
+    case length(pesel) do
       11 -> { :ok, pesel }
       _ -> { :error, "Invalid length" }
     end
@@ -60,7 +62,7 @@ defmodule PolishValidators.Pesel do
   end
 
   defp validate_checksum(checksum, pesel_integers_list) do
-    if (10 - (rem(checksum, 10))) |> rem(10) == List.last(pesel_integers_list) do
+    if (10 - (rem(checksum, 10))) |> rem(10) == last(pesel_integers_list) do
       { :ok, "Valid" }
     else
       { :error, "Wrong checksum" }

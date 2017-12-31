@@ -1,7 +1,8 @@
 defmodule PolishValidators.Nip do
-  import String, only: [split: 3, to_integer: 1]
+  import String, only: [split: 3, to_integer: 1, length: 1]
   import Enum, only: [zip: 1, reduce: 3, map: 2]
   import List, only: [last: 1]
+  import Kernel, except: [length: 1]
 
   @weights [6, 5, 7, 2, 3, 4, 5, 6, 7]
 
@@ -40,7 +41,7 @@ defmodule PolishValidators.Nip do
   end
 
   defp validate_length(nip) do
-    case String.length(nip) do
+    case length(nip) do
       10 -> { :ok, nip }
       _ -> { :error, "Invalid length" }
     end
