@@ -7,6 +7,8 @@ defmodule PolishValidators.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      description: description(),
+      package: package(),
       deps: deps()
     ]
   end
@@ -16,6 +18,22 @@ defmodule PolishValidators.Mixfile do
     [
       extra_applications: [:logger]
     ]
+  end
+
+  defp description do
+    """
+    Library for validate polish numbers: PESEL, NIP, REGON, IBAN (PL)
+    """
+  end
+
+  defp package do
+    [
+     files: ["lib", "mix.exs", "README.md"],
+     maintainers: ["Damian Baćkowski"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/dbackowski/elixir_polish_validators",
+              "Docs" => "https://hexdocs.pm/polish_validators/"}
+     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
