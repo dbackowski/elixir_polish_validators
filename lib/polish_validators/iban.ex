@@ -14,6 +14,9 @@ defmodule PolishValidators.Iban do
       iex> PolishValidators.Iban.validate("PL61109010140000071219812874")
       { :ok, "Valid" }
 
+      iex> PolishValidators.Iban.validate("61109010140000071219812874")
+      { :ok, "Valid" }
+
       iex> PolishValidators.Iban.validate("PL61109010140000071219812871")
       { :error, "Wrong checksum" }
 

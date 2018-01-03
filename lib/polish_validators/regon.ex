@@ -12,7 +12,7 @@ defmodule PolishValidators.Regon do
   """
 
   @doc """
-  Validate regon number.
+  Validate Regon number.
 
   ## Examples
 
