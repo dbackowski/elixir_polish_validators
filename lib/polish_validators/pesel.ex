@@ -1,8 +1,7 @@
 defmodule PolishValidators.Pesel do
-  import String, only: [split: 3, length: 1, to_integer: 1]
   import Enum, only: [zip: 1, reduce: 3, map: 2]
   import List, only: [last: 1]
-  import Kernel, except: [length: 1]
+  import PolishValidators.Common
 
   @weights [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
   
@@ -27,7 +26,7 @@ defmodule PolishValidators.Pesel do
   """
   #def validate(pesel) do#when is_binary(pesel) do
   def validate(pesel) do
-    pesel_length = validate_length(pesel)
+    pesel_length = validate_length(pesel, 11)
     
     case pesel_length do
       { :ok, pesel } ->
@@ -35,38 +34,18 @@ defmodule PolishValidators.Pesel do
         [pesel_integers_list, @weights]
           |> zip
           |> calculate_checksum
-          |> validate_checksum(pesel_integers_list)
+          |> validate_checksum(last(pesel_integers_list))
       _ -> pesel_length
     end
   end
 
-  defp to_integers_list(pesel) do
-    to_string(pesel) 
-      |> split("", trim: true)
-      |> map(&(to_integer(&1)))
-  end
-
-  defp validate_length(pesel) do
-    case length(pesel) do
-      11 -> { :ok, pesel }
-      _ -> { :error, "Invalid length" }
-    end
-  end
-
   defp calculate_checksum(pesel) do
-    reduce(pesel, 0, &reduce_checksum/2)
+    (10 - (reduce(pesel, 0, &reduce_checksum/2) |> rem(10)))
+      |> rem(10)
   end
 
   defp reduce_checksum(pesel, acc) do
     acc + elem(pesel, 0) * elem(pesel, 1)
-  end
-
-  defp validate_checksum(checksum, pesel_integers_list) do
-    if (10 - (rem(checksum, 10))) |> rem(10) == last(pesel_integers_list) do
-      { :ok, "Valid" }
-    else
-      { :error, "Wrong checksum" }
-    end
   end
 
   #def validate(pesel) do
