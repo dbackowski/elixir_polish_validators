@@ -33,7 +33,7 @@ defmodule PolishValidators.Regon do
       { :error, "Invalid length" }
   
   """
-  def validate(regon) do
+  def validate(regon) when is_binary(regon) do
     regon_length = validate_length(regon, [9, 14])
     
     case regon_length do
@@ -45,6 +45,10 @@ defmodule PolishValidators.Regon do
           |> validate_checksum(last(regon_integers_list))
       _ -> regon_length
     end
+  end
+
+  def validate(_) do
+    throw "Regon must be a string."
   end
 
   defp weights(regon) do

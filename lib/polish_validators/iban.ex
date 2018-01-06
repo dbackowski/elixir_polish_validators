@@ -24,7 +24,7 @@ defmodule PolishValidators.Iban do
       { :error, "Invalid length" }
   
   """
-  def validate(iban) do
+  def validate(iban) when is_binary(iban) do
     iban_length = replace_prefix(iban, "PL", "")
                     |> validate_length(26)
     
@@ -34,6 +34,10 @@ defmodule PolishValidators.Iban do
           |> validate_checksum(1)
       _ -> iban_length
     end
+  end
+
+  def validate(_) do
+    throw "IBAN must be a string."
   end
 
   defp calculate_checksum(iban) do

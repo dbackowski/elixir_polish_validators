@@ -1,5 +1,5 @@
 defmodule PolishValidators.Pesel do
-  import Enum, only: [zip: 1, reduce: 3, map: 2]
+  import Enum, only: [zip: 1, reduce: 3]
   import List, only: [last: 1]
   import PolishValidators.Common
 
@@ -24,8 +24,7 @@ defmodule PolishValidators.Pesel do
       { :error, "Invalid length" }
   
   """
-  #def validate(pesel) do#when is_binary(pesel) do
-  def validate(pesel) do
+  def validate(pesel) when is_binary(pesel) do
     pesel_length = validate_length(pesel, 11)
     
     case pesel_length do
@@ -39,6 +38,10 @@ defmodule PolishValidators.Pesel do
     end
   end
 
+  def validate(_) do
+    throw "Pesel must be a string."
+  end
+
   defp calculate_checksum(pesel) do
     (10 - (reduce(pesel, 0, &reduce_checksum/2) |> rem(10)))
       |> rem(10)
@@ -47,8 +50,4 @@ defmodule PolishValidators.Pesel do
   defp reduce_checksum(pesel, acc) do
     acc + elem(pesel, 0) * elem(pesel, 1)
   end
-
-  #def validate(pesel) do
-  #  throw "Pesel must be a string."
-  #end
 end

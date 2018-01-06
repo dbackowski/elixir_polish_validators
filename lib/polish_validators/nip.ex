@@ -1,5 +1,5 @@
 defmodule PolishValidators.Nip do
-  import Enum, only: [zip: 1, reduce: 3, map: 2]
+  import Enum, only: [zip: 1, reduce: 3]
   import List, only: [last: 1]
   import PolishValidators.Common
 
@@ -24,7 +24,7 @@ defmodule PolishValidators.Nip do
       { :error, "Invalid length" }
   
   """
-  def validate(nip) do
+  def validate(nip) when is_binary(nip) do
     nip_length = validate_length(nip, 10)
     
     case nip_length do
@@ -36,6 +36,10 @@ defmodule PolishValidators.Nip do
           |> validate_checksum(last(nip_integers_list))
       _ -> nip_length
     end
+  end
+
+  def validate(_) do
+    throw "NIP must be a string."
   end
 
   defp calculate_checksum(nip) do
