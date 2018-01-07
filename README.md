@@ -10,6 +10,12 @@ iex> PolishValidators.Pesel.validate("44051401359")
 
 iex> PolishValidators.Nip.validate("6597068174")
 { :ok, "Valid" }
+
+iex> PolishValidators.Iban.validate("PL61109010140000071219812874")
+{ :ok, "Valid" }
+
+iex> PolishValidators.Regon.validate("517001918")
+{ :ok, "Valid" }
 ```
 
 ## Installation
