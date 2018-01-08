@@ -1,4 +1,4 @@
-# PolishValidators
+# PolishValidators [![Build Status](https://travis-ci.org/dbackowski/elixir_polish_validators.svg?branch=master)](https://travis-ci.org/dbackowski/elixir_polish_validators)
 
 Library for validate polish numbers: PESEL, NIP, REGON, IBAN (PL)
 
