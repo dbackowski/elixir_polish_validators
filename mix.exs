@@ -4,7 +4,7 @@ defmodule PolishValidators.Mixfile do
   def project do
     [
       app: :polish_validators,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       description: description(),
@@ -40,9 +40,8 @@ defmodule PolishValidators.Mixfile do
   defp deps do
     [
       {:ex_doc, "~> 0.11", only: :dev},
-      {:earmark, "~> 0.1", only: :dev}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:dialyxir, "~> 0.3", only: [:dev]}
     ]
   end
 end

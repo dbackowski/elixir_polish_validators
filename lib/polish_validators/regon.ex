@@ -33,6 +33,7 @@ defmodule PolishValidators.Regon do
       { :error, "Invalid length" }
   
   """
+  @spec validate(String.t) :: {atom, String.t}
   def validate(regon) when is_binary(regon) do
     regon_length = validate_length(regon, [9, 14])
     

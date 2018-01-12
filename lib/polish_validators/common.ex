@@ -24,6 +24,7 @@ defmodule PolishValidators.Common do
       { :error, "Invalid length" }
 
   """
+  @spec validate_length(String.t, integer() | list(integer)) :: {atom, String.t}
   def validate_length(string, valid_length) do
     valid_length = cond do
       is_number(valid_length) -> [valid_length]
@@ -48,6 +49,7 @@ defmodule PolishValidators.Common do
       { :error, "Wrong checksum" }
 
   """
+  @spec validate_checksum(integer(), integer()) :: {atom, String.t}
   def validate_checksum(checksum, control_digit) do
     if (checksum == control_digit) do
       { :ok, "Valid" }
@@ -65,6 +67,7 @@ defmodule PolishValidators.Common do
       [1, 2, 3]
 
   """
+  @spec to_integers_list(String.t) :: list(integer) 
   def to_integers_list(number) do
     to_string(number) 
       |> split("", trim: true)

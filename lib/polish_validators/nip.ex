@@ -24,6 +24,7 @@ defmodule PolishValidators.Nip do
       { :error, "Invalid length" }
   
   """
+  @spec validate(String.t) :: {atom, String.t}
   def validate(nip) when is_binary(nip) do
     nip_length = validate_length(nip, 10)
     

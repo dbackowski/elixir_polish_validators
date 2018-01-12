@@ -24,6 +24,7 @@ defmodule PolishValidators.Pesel do
       { :error, "Invalid length" }
   
   """
+  @spec validate(String.t) :: {atom, String.t}
   def validate(pesel) when is_binary(pesel) do
     pesel_length = validate_length(pesel, 11)
     
