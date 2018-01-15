@@ -20,8 +20,7 @@ iex> PolishValidators.Regon.validate("517001918")
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `polish_validators` to your list of dependencies in `mix.exs`:
+Package can be installed by adding `polish_validators` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -30,8 +29,10 @@ def deps do
   ]
 end
 ```
+## Documentation
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/polish_validators](https://hexdocs.pm/polish_validators).
+Documentation can be found at [https://hexdocs.pm/polish_validators](https://hexdocs.pm/polish_validators).
 
+## License
+
+Source code is available under the terms of the MIT License. Check LICENSE file for more information.
